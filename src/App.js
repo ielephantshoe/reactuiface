@@ -1,15 +1,13 @@
 
 import './App.css';
-
+import { BiArchive} from "react-icons/bi"
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <p>
-          Let's goooooo!
-        </p>
+    <div className="App container mx-auto mt-3 font-thin">
        
-      </header>
+        <h1 className='text-5xl'>
+         <BiArchive className='inline-block text-purple-400 align-top'/> Let's goooooo!
+        </h1>
     </div>
   );
 }
