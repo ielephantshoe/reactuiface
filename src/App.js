@@ -1,13 +1,19 @@
 
 import './App.css';
 import { BiArchive} from "react-icons/bi"
+import Search from './components/Search';
+import AddApponitment from './components/AddApponitment';
 function App() {
   return (
     <div className="App container mx-auto mt-3 font-thin">
        
         <h1 className='text-5xl'>
          <BiArchive className='inline-block text-purple-400 align-top'/> Let's goooooo!
+     
+     
         </h1>
+       <Search />
+       <AddApponitment/>
     </div>
   );
 }
