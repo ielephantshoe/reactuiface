@@ -1,40 +1,45 @@
 
 import './App.css';
-import { BiArchive,BiTrash} from "react-icons/bi"
+import { BiArchive} from "react-icons/bi"
 import Search from './components/Search';
-import AddApponitment from './components/AddApponitment';
-
-import appointmentList from "./data.json";
-
+import AppointmentInfo from './components/AppointmentInfo';
+import AddAppointment from './components/AddApponitment';
+import { useEffect, useCallback, useState } from "react";
 function App() {
+
+  let [appointmentList, setAppointmentList] = useState([]);
+  let [query, setQuery] = useState("");
+  const filteredAppointments = appointmentList.filter(item =>{
+    return (
+      item.petName.toLowerCase().includes(query.toLowerCase()) ||
+      item.ownerName.toLowerCase().includes(query.toLowerCase()) ||
+      item.aptNotes.toLowerCase().includes(query.toLowerCase()) 
+    )
+  })
+  const fetchData = useCallback(() => {
+    fetch('./data.json')
+    .then(response => response.json())
+    .then(data => {
+      setAppointmentList(data);
+    })
+  },[])
+
+  useEffect(() => {
+    fetchData();
+  },[fetchData]);
+
   return (
-    <div className="App container mx-auto mt-3 font-thin">
-       
-        <h1 className='text-5xl'>
-         <BiArchive className='inline-block text-purple-400 align-top'/> Let's goooooo!
-     
-     
-        </h1>
-       <AddApponitment/>
-       <Search />
+    <div className="App container mx-auto mt-3 font-thin">   
+        <h1 className='text-5xl'><BiArchive/> Vetrinary Appointments</h1>
+       <Search query={query} onQueryChange={myQuery => setQuery(myQuery)} />
+       <AddAppointment/>
 <ul>
 {
-  appointmentList.map(appointment =>(
-   <li className="px-3 py-3 flex items-start">
-  <button type="button"
-    className="p-1.5 mr-1.5 mt-1 rounded text-white bg-red-500 hover:bg-yellow-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
-    <BiTrash /></button>
-  <div className="flex-grow">
-    <div className="flex items-center">
-      <span className="flex-none font-medium text-2xl text-blue-500">petName</span>
-      <span className="flex-grow text-right">aptDate</span>
-    </div>
-    <div><b className="font-bold text-blue-500">Owner:</b> ownerName</div>
-    <div className="leading-tight">aptNotes</div>
-  </div>
-</li>
-
-  ))
+  filteredAppointments.map(appointment =>
+    <AppointmentInfo  appointment={appointment} onDeleteAppointment={
+      appointmentId => setAppointmentList(appointmentList.filter(appointment=>appointment.id !== appointmentId))
+    } key={appointment.id}/>
+  )
 }
 </ul>
     </div>
