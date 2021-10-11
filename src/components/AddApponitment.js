@@ -3,10 +3,13 @@ import { BiCalendarPlus } from "react-icons/bi";
 
 const AddAppointment = () => {
 
+  const clearFormData = {
+    ownerName:"",petName:"",aptName:"",aptTime:"",aptNotes:"",
+  };
+
   let [toggleForm,setToggleForm] = useState(false);
-
-
-
+  let [formData, setFormData] = useState(clearFormData)
+ 
   return (
     <div>
       <button className={`bg-purple-400 text-white px-2 py-3 w-full text-left rounded-t-md ${toggleForm ? 'rounded-t-md' : 'rounded-md'}`} onClick={()=>
