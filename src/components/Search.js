@@ -23,7 +23,10 @@ const Search = ({query,onQueryChange, sortBy,onSortByChange, orderBy,onOrderByCh
             onClick={()=>setToggleSort(!toggleSort)}
               className="justify-center px-4 py-2 bg-purple-400 border-2 border-purple-400 text-sm text-white hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 flex items-center" id="options-menu" aria-haspopup="true" aria-expanded="true">
               Sort By <BiCaretDown className="ml-2" />
-            </button><Dropdown toggle={toggleSort} 
+            </button>
+            <Dropdown toggle={toggleSort} 
+            orderBy={orderBy}
+            sortBy={sortBy}
             onOrderByChange={myOrder=> onOrderByChange(myOrder)}
             onSortByChange={mySort=> onSortByChange(mySort)}
             />

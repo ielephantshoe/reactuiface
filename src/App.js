@@ -19,7 +19,7 @@ function App() {
   }).sort((a,b) => {
       let order = (orderBy === 'asc') ? 1 : -1;
       return (
-        a[sortBy].toLowerCase() < b[sortBy].toLowerCase() ? -1 : 1 * order
+        a[sortBy].toLowerCase() < b[sortBy].toLowerCase() ?  -1 * order : 1 * order
       )
   });
   const fetchData = useCallback(() => {
@@ -37,11 +37,13 @@ function App() {
   return (
     <div className="App container mx-auto mt-3 font-thin">   
         <h1 className='text-5xl'><BiArchive/> Vetrinary Appointments</h1>
-       <Search orderBy={orderBy}
-        onOrderBy={orderBy}
-        onOrderByChange={myOrder=>setOrderBy(myOrder)}
+       <Search 
+        orderBy={orderBy}
+        onOrderByChange={myOrder=>setOrderBy(myOrder)} 
+        sortBy={sortBy}
         onSortByChange={mySort=>setSortBy(mySort)}
-        query={query} onQueryChange={myQuery => setQuery(myQuery)} />
+        query={query} 
+        onQueryChange={myQuery => setQuery(myQuery)} />
        <AddAppointment/>
 <ul>
 {

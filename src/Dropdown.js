@@ -22,14 +22,14 @@ function Dropdown({toggle, orderBy, onOrderByChange, sortBy, onSortByChange}) {
           role="menuitem">Date { sortBy === 'aptDate' && <BiCheck />}</div>
         <div
 
-          onClick={()=> onSortByChange('asc')}
+          onClick={()=> onOrderByChange('asc')}
           className="px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900 flex justify-between cursor-pointer border-gray-1 border-t-2"
-          role="menuitem">Asc { sortBy === 'asc' && <BiCheck />}</div>
+          role="menuitem">Asc { orderBy === 'asc' && <BiCheck />}</div>
         <div
 
-          onClick={()=> onSortByChange('desc')}
+          onClick={()=> onOrderByChange('desc')}
           className="px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900 flex justify-between cursor-pointer"
-          role="menuitem">Desc { sortBy === 'desc' && <BiCheck />}</div>
+          role="menuitem">Desc { orderBy === 'desc' && <BiCheck />}</div>
       </div>
     </div>
 
