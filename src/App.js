@@ -5,6 +5,8 @@ import Search from './components/Search';
 import AppointmentInfo from './components/AppointmentInfo';
 import AddAppointment from './components/AddApponitment';
 import { useEffect, useCallback, useState } from "react";
+import murphy from './murph.jpeg'
+
 function App() {
 
   let [appointmentList, setAppointmentList] = useState([]);
@@ -40,7 +42,10 @@ function App() {
 
   return (
     <div className="App container mx-auto mt-3 font-thin">   
-        <h1 className='text-5xl'><BiArchive/> Vetrinary Appointments</h1>
+        <div className='grid justify-content-between'>
+     <h1 className='text-5xl'><img src={murphy} className='rounded-full shadow-xl w-10' alt='dog'/> Vetrinary Appointments</h1>
+        </div>
+   
        <Search 
         orderBy={orderBy}
         onOrderByChange={myOrder=>setOrderBy(myOrder)} 
