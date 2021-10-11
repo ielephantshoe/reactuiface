@@ -44,7 +44,13 @@ function App() {
         onSortByChange={mySort=>setSortBy(mySort)}
         query={query} 
         onQueryChange={myQuery => setQuery(myQuery)} />
-       <AddAppointment/>
+        onSendAppoinment={myAppointment => setAppointmentList([...appointmentList,myAppointment
+      ])} 
+       <AddAppointment 
+       lastId={appointmentList.reduce((max, item) => 
+         Number(item.id) > max ? Number(item.id) : max,0)} 
+
+       />
 <ul>
 {
   filteredAppointments.map(appointment =>
